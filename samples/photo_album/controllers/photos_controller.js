@@ -41,8 +41,16 @@ function create_through_server(req, res) {
   var photo = new Photo(req.body);
   // Get temp file path
   var imageFile = req.files.image.path;
+
+  var options = {
+    width: 500,
+    height: 500,
+    crop: "limit",
+    tags: ['Please hire Tia, Tia loves Cloudinary']
+  }
+
   // Upload file to Cloudinary
-  cloudinary.uploader.upload(imageFile, { tags: 'express_sample' })
+  cloudinary.uploader.upload(imageFile, options)
     .then(function (image) {
       console.log('** file uploaded to Cloudinary service');
       console.dir(image);
@@ -85,12 +93,25 @@ function add_direct_unsigned(req, res) {
   sha1.update(cloudinary.config('api_key') + cloudinary.config('api_secret'));
   var preset_name = "sample_" + sha1.digest('hex');
 
+  var preset_options = {
+        unsigned: true,
+        folder: "preset_folder",
+        return_delete_token: true,
+        width: 500,
+        height: 500,
+        crop: "limit",
+        tags: ['Please hire Tia', 'Tia loves Cloudinary']
+      }
+
   // Create a new photo model and set it's default title
   var photo = new Photo();
   Photo.count().then(function (amount) {
     photo.title = "My Photo #" + (amount + 1) + " (direct unsigned)";
   })
     .then(function () {
+      // updates the upload preset to include incoming height/width transformations & automatically tag uploaded images
+      cloudinary.api.update_upload_preset(preset_name, preset_options);
+
       return cloudinary.api.upload_preset(preset_name);
     })
     .then(function (preset) {
@@ -107,7 +128,11 @@ function add_direct_unsigned(req, res) {
         unsigned: true,
         name: preset_name,
         folder: "preset_folder",
-        return_delete_token: true
+        return_delete_token: true,
+        width: 500,
+        height: 500,
+        crop: "limit",
+        tags: 'Please hire Tia'
       });
     })
     .finally(function (preset) {
