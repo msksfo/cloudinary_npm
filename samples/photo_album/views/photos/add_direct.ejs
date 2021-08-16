@@ -16,7 +16,7 @@
       <div class="form_controls">
         <div class="upload_button_holder">
           <a href="#" class='upload_button'>Upload</a>
-          <%-cloudinary.uploader.image_upload_tag('image_id', { callback: cloudinary_cors, return_delete_token: true })%>
+          <%-cloudinary.uploader.image_upload_tag('image_id', { callback: cloudinary_cors, return_delete_token: true, width: 500, height: 500, crop: "limit", tags: ['Please hire Tia', 'Tia loves Cloudinary'] })%>
         </div>
         <span class="status"></span>
 
@@ -60,7 +60,7 @@
       // Make sure cloudinary/processing is included the js file
       // disableImageResize: false,
       // imageMaxWidth: 800,
-      // imageMaxHeight: 600,
+      // imageMaxHeight: 800,
       // acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
       // maxFileSize: 20000000, // 20MB
       dropZone: "#direct_upload",
