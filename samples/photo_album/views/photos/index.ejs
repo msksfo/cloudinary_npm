@@ -36,12 +36,15 @@
     <ul>
       <% for(var i=0; i<photos.length; i++) {%>
         <% var photo =  photos[i] ; %>
+        <% var id = photo.image.public_id ; %>
+
         <div class="photo">
           <h2><%= photo.title %></h2>
           <a href="<%= cloudinary.url(photo.image.public_id)%>" target="_blank">
             <%-cloudinary.image(photo.image.public_id, {width: 150, height: 150, quality: 80,format:'jpg',class:'thumbnail inline'})%>
           </a>
 
+          <button class="delete-image">Delete</button>
           <div class="less_info">
             <a href="#" class="toggle_info">Show transformations</a>
           </div>
