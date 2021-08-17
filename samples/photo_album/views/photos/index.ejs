@@ -44,7 +44,10 @@
             <%-cloudinary.image(photo.image.public_id, {width: 150, height: 150, quality: 80,format:'jpg',class:'thumbnail inline'})%>
           </a>
 
-          <button class="delete-image">Delete</button>
+          <button class="delete-image"
+                  onClick="console.log('<%= id %>')">
+                  Delete</button>
+
           <div class="less_info">
             <a href="#" class="toggle_info">Show transformations</a>
           </div>
@@ -95,3 +98,13 @@
   </ul>
 <% } %>
 </div>
+
+<script>
+  
+  function delete_image(public_id) {
+       cloudinary.uploader.destroy(public_id)
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
+    }
+</script>
+  
