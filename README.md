@@ -21,11 +21,11 @@ This repo is here because I was asked to complete a take-home assignment while a
 
 ## My process for completing these exercises
 
--   I carefully read the exercise requirements to be sure I understood what was being asked of me.
--   I found the code on Github. Forked and cloned it to my machine and installed all dependencies.
--   I took a lot of time to read through the code in the photo album project to determine which files I would need to modify in order to fulfill the exercise requirements. And to understand how the code works, where functions are called, with what parameters, etc.
--   I spent time reading Cloudinary documentation, especially documentation on the Node.js SDK and the Upload API.
--   I started coding my solution.
+-   Carefully read the exercise requirements to be sure I understood what was being asked of me.
+-   Found the code on Github, then forked and cloned it to my machine installing all dependencies.
+-   Read through the code in the photo album project to determine which files I would need to modify in order to fulfill the exercise requirements as well as understand how the code works, where functions are called, with what parameters, etc.
+-   Read Cloudinary documentation, especially documentation on the Node.js SDK and the Upload API.
+-   Coded my solution.
 
 ## What went well
 
@@ -34,9 +34,9 @@ This repo is here because I was asked to complete a take-home assignment while a
 
 ## Things I had trouble with
 
--   I did have some trouble getting the Cloudinary logo to appear as a watermarked overlay. After entirely too much time floundering, I found the answer in a Cloudinary Support article. I used an external source for my overlay. But fetched URLs were marked as restricted in my account. So when I went into my settings and unchecked that option, it worked. Thank you so much to **Millie Axelrod** for leaving a comment on [this thread](https://support.cloudinary.com/hc/en-us/articles/360032635232-Overlay-an-image-that-s-taken-from-a-fetched-public-URL#article-comments) that helped me solve my issue.
+-   I did have some trouble getting the Cloudinary logo to appear as a watermarked overlay. After some time, I found the answer in a Cloudinary Support article. I used an external source for my overlay. But fetched URLs were marked as restricted in my account. So when I went into my settings and unchecked that option, it worked. Thank you so much to **Millie Axelrod** for leaving a comment on [this thread](https://support.cloudinary.com/hc/en-us/articles/360032635232-Overlay-an-image-that-s-taken-from-a-fetched-public-URL#article-comments) that helped me solve my issue.
 -   I had trouble with the server-side upload. I was getting this TypeError ![TypeError:Os.tmpDir is not a function](https://res.cloudinary.com/tangoecho/image/upload/v1629168727/iypsty5qblm0thcbhbgh.png)  
-    Not having any idea what this meant, I did what any developer would do: turned to Google. This [stackoverflow thread](https://stackoverflow.com/questions/40913034/os-tmpdir-is-deprecated-node-and-formidable) thread suggested that `os.tmpDir()` should be changed to `os.tmpdir()`, with a lowercase d. So I went to the node module and line indicated at the top of the stack trace, and made that correction. This worked perfectly for me on a MacBook Pro running macOS Big Sur version 11.4, node version 14.2.0
+    Initially not having any idea what this meant, I did what any developer would do: turned to Google. This [stackoverflow thread](https://stackoverflow.com/questions/40913034/os-tmpdir-is-deprecated-node-and-formidable) thread suggested that `os.tmpDir()` should be changed to `os.tmpdir()`, with a lowercase d. So I went to the node module and line indicated at the top of the stack trace, and made that correction. This worked perfectly for me on a MacBook Pro running macOS Big Sur version 11.4, node version 14.2.0
 
 ## ​What would I do differently next time
 
