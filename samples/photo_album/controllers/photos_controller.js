@@ -178,6 +178,25 @@ function create_direct(req, res) {
     });
 }
 
+// delete image from Cloudinary AND from database
+async function delete_image(req, res){
+  const id = req.body.public_id;
+
+  const result = await cloudinary.uploader.destroy(id, (err, status) => {
+      if(status.result === 'ok') {
+        Photo.all().then((photos) => {
+          const filteredPhotos = photos.filter(value => value.image.public_id === id)
+          const photoToBeDeleted = filteredPhotos[0]
+
+          photoToBeDeleted.destroy(() => res.redirect('/'))
+        })
+      }else {
+        console.log(err)
+      }
+  })
+}
+
+
 module.exports.wire = function (app) {
   // index
   app.get('/', index);
@@ -191,4 +210,7 @@ module.exports.wire = function (app) {
   app.get('/photos/add_direct', add_direct);
   app.get('/photos/add_direct_unsigned', add_direct_unsigned);
   app.post('/photos/direct', create_direct);
+
+  // delete image
+  app.post('/delete', delete_image);
 };
